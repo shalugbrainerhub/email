@@ -129,7 +129,7 @@ mydomain = gnostic.cloud
 myorigin = $mydomain
 
 # RECEIVING MAIL
-inet_interfaces = all
+inet_interfaces = ipv4
 
 # RECEIVING MAIL
 
