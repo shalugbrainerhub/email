@@ -9,4 +9,4 @@ services:
       - "465:465"
     volumes:
       - ./postfix/main.cf:/etc/postfix/main.cf
-    restart: always
+    restart: no
