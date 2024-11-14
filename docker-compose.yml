@@ -9,4 +9,8 @@ services:
       - "465:465"
     volumes:
       - ./postfix/main.cf:/etc/postfix/main.cf
-   
+    restart: "on-failure"
+    healthcheck:
+      test: ["CMD", "postfix", "status"]
+      interval: 30s
+      retries: 3
