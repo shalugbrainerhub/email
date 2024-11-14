@@ -2,7 +2,7 @@
 FROM ubuntu:20.04
 
 # Install Postfix and required utilities
-RUN sudo apt-get update && sudo apt-get install -y \
+RUN sudo yum update && sudo yum install -y \
     postfix \
     mailutils \
     && apt-get clean
