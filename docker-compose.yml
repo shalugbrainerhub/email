@@ -8,5 +8,5 @@ services:
       - "587:587"
       - "465:465"
     volumes:
-      - /path/to/mail/data:/var/spool/postfix
-      - /path/to/mail/logs:/var/log/mail
+      - ./postfix/main.cf:/etc/postfix/main.cf
+    restart: always

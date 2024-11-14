@@ -1,8 +1,10 @@
-# Use the official Amazon Linux 3 image as base
+# Use the official Amazon Linux 2 image as the base
 FROM amazonlinux:2
 
-# Install Postfix and required dependencies
-RUN yum install -y postfix mailx
+# Install Postfix, mailx, and other dependencies
+RUN yum update -y && \
+    yum install -y postfix mailx && \
+    yum clean all
 
 # Expose SMTP ports (25 for sending, 587 for submission, 465 for SSL)
 EXPOSE 25 587 465
