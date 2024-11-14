@@ -1,17 +1,17 @@
 # Use an official Ubuntu base image
 FROM ubuntu:20.04
 
-# Install Postfix and required utilities
-RUN sudo yum update && sudo yum install -y \
+# Set the environment variables to avoid any interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Update and install necessary packages
+RUN apt-get update && apt-get install -y \
     postfix \
     mailutils \
     && apt-get clean
 
-# Set up Postfix configuration
-COPY main.cf /etc/postfix/main.cf
-
-# Expose port 25 for SMTP
+# Expose the necessary port for Postfix (SMTP)
 EXPOSE 25
 
-# Start Postfix when the container starts
+# Start Postfix when the container runs
 CMD ["postfix", "start-fg"]
