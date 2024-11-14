@@ -1,0 +1,21 @@
+# Basic settings
+myhostname = localhost      # Hostname of the server
+mydomain = localdomain                  # Domain for local testing
+myorigin = $mydomain                    # Domain for outgoing emails
+inet_interfaces = all                   # Listen on all network interfaces
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+relayhost =                             # Leave blank for no relay or specify SMTP server
+
+# Mailbox locations
+#home_mailbox = Maildir/                 # Use Maildir format for local delivery
+
+# Security settings
+smtp_tls_security_level = may
+smtpd_tls_security_level = may
+smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
+smtpd_tls_cert_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_banner = $myhostname ESMTP $mail_name
+
+# Limit local access to the server (useful for testing)
+mynetworks = 127.0.0.0/8
