@@ -1,13 +1,14 @@
-# Use Amazon Linux as the base image
-FROM amazonlinux:latest
+# Use the official Amazon Linux 3 image as base
+FROM amazonlinux:2
 
-# Install Postfix
-RUN yum update -y && \
-    yum install -y postfix mailx && \
-    yum clean all
+# Install Postfix and required dependencies
+RUN yum install -y postfix mailx
 
-# Expose the necessary port for Postfix (SMTP)
-EXPOSE 25
+# Expose SMTP ports (25 for sending, 587 for submission, 465 for SSL)
+EXPOSE 25 587 465
 
-# Start Postfix when the container runs
+# Copy custom Postfix configuration files
+COPY ./postfix/main.cf /etc/postfix/main.cf
+
+# Set Postfix as the default mail server
 CMD ["postfix", "start-fg"]

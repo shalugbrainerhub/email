@@ -1,11 +1,12 @@
-version: '3.8'
+version: '3'
 
 services:
   postfix:
     build: .
-    container_name: postfix-container
     ports:
-      - "25:25"  
+      - "25:25"
+      - "587:587"
+      - "465:465"
     volumes:
-      - ./main.cf:/etc/postfix/main.cf  
-    restart: unless-stopped
+      - /path/to/mail/data:/var/spool/postfix
+      - /path/to/mail/logs:/var/log/mail
